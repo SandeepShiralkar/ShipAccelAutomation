@@ -6,6 +6,8 @@ import java.util.Properties;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.edge.EdgeDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
@@ -30,7 +32,21 @@ public class TestBase {
 				driver.manage().window().maximize();
 				driver.get(url);
 			}
-		}
+			else if (prop.getProperty("browser").equalsIgnoreCase("edge")) {
+				WebDriverManager.edgedriver().setup();
+				driver = new EdgeDriver();
+				driver.manage().window().maximize();
+				driver.get(url);
+			}
+			else if (prop.getProperty("browser").equalsIgnoreCase("firefox")) {
+				WebDriverManager.firefoxdriver().setup();
+				driver = new FirefoxDriver();
+				driver.manage().window().maximize();
+				driver.get(url);
+			}
+			else {
+				System.out.println("Browser not supported");
+			}		}
 		return driver;
 	}	
 }

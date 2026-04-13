@@ -38,7 +38,7 @@ public class LoginSteps {
 		testcontext.driver = testcontext.testBase.WebDriverManager();
 	}
 	
-	@When("User logs in with {string} and {string}")
+	@When("^User logs in with (.+) and (.+)$")
 	public void user_logs_in_with_and(String email, String password) {
 		 
 		testcontext.wait = new WebDriverWait(testcontext.driver, Duration.ofSeconds(10));

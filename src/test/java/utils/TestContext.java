@@ -1,6 +1,7 @@
 package utils;
 
 import java.io.IOException;
+import java.time.Duration;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -33,8 +34,10 @@ public class TestContext {
     
     public TestContext() throws IOException {
 		// Default constructor
-    	pageObjectManager = new PageObjectManager(wait, testBase.WebDriverManager());
     	testBase = new TestBase();
+    	driver = testBase.WebDriverManager();
+    	wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+    	pageObjectManager = new PageObjectManager(wait, driver);
     
     }
 	

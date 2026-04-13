@@ -1,11 +1,13 @@
 package cucumberOptions;
 
+import org.testng.annotations.DataProvider;
+
 import io.cucumber.testng.AbstractTestNGCucumberTests;
 import io.cucumber.testng.CucumberOptions;
 
 @CucumberOptions(
 		features = "src/test/java/shipAccelfeatures",
-		glue = {"stepDefinitions","utils"},
+		glue = {"stepDefinitions"},
 		dryRun = false,
 		monochrome = true,
 		tags = "",
@@ -13,5 +15,12 @@ import io.cucumber.testng.CucumberOptions;
 		)
 
 public class RunnerTestNG extends AbstractTestNGCucumberTests {
+	
+	@Override
+	@DataProvider(parallel = true)
+	
+	public Object[][] scenarios() {
+		return super.scenarios();
+	}
 
 }
