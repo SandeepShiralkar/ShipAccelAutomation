@@ -9,6 +9,7 @@ public class PageObjectManager {
 	public WebDriverWait wait;
 	public WebDriver driver;
 	public LogoutPage logoutPage;
+	public ImportOrdersPage importOrdersPage;
 	
 	public PageObjectManager(WebDriverWait wait, WebDriver driver) {
 		this.driver = driver;
@@ -23,5 +24,10 @@ public class PageObjectManager {
 	public LogoutPage getLogoutPage() {
 		logoutPage = new LogoutPage(wait);
 		return logoutPage;
+	}
+	
+	public ImportOrdersPage getImportOrdersPage() {
+		importOrdersPage = new ImportOrdersPage(wait, driver);
+		return importOrdersPage;
 	}
 }
