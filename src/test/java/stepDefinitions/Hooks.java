@@ -1,9 +1,16 @@
 package stepDefinitions;
 
+import java.io.File;
 import java.io.IOException;
 
+import org.apache.commons.io.FileUtils;
+import org.openqa.selenium.OutputType;
+import org.openqa.selenium.TakesScreenshot;
+
 import io.cucumber.java.After;
+import io.cucumber.java.AfterStep;
 import io.cucumber.java.Before;
+import io.cucumber.java.Scenario;
 import utils.TestContext;
 
 public class Hooks {
@@ -28,5 +35,18 @@ public class Hooks {
 			testContext.driver.quit();
 		}
 		//testContext.testBase.WebDriverManager().quit()
+	}
+	
+	@AfterStep
+	public void AddScreenshot(Scenario scenario) throws IOException {
+		// This hook can be used for actions after each step, such as taking screenshots on failure
+		if (scenario.isFailed()) {
+			// Code to capture and attach screenshot to the report
+			// byte[] screenshot = ((TakesScreenshot) testContext.driver).getScreenshotAs(OutputType.BYTES);
+			// scenario.attach(screenshot, "image/png", "screenshot");
+			File sourcePath = ((TakesScreenshot) testContext.driver).getScreenshotAs(OutputType.FILE);
+			byte[] fileContent = FileUtils.readFileToByteArray(sourcePath);
+			scenario.attach(fileContent, "image/png", "screenshot");
+		}
 	}
 }

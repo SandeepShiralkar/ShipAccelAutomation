@@ -80,7 +80,61 @@
 	    <version>3.20.0</version>
 	    <scope>compile</scope>
 	</dependency>
+	
+	<!-- Source: https://mvnrepository.com/artifact/com.aventstack/extentreports -->
+	<dependency>
+	    <groupId>com.aventstack</groupId>
+	    <artifactId>extentreports</artifactId>
+	    <version>5.1.2</version>
+	    <scope>compile</scope>
+	</dependency>
+	
+	<!-- Source: https://mvnrepository.com/artifact/tech.grasshopper/extentreports-cucumber7-adapter -->
+	<dependency>
+	    <groupId>tech.grasshopper</groupId>
+	    <artifactId>extentreports-cucumber7-adapter</artifactId>
+	    <version>1.14.0</version>
+	    <scope>compile</scope>
+	</dependency>
+	
+	<!-- Source: https://mvnrepository.com/artifact/commons-io/commons-io -->
+	<dependency>
+	    <groupId>commons-io</groupId>
+	    <artifactId>commons-io</artifactId>
+	    <version>2.21.0</version>
+	    <scope>compile</scope>
+	</dependency>
 
 </dependencies>
+
+<build>
+	<plugins>
+		<!-- Maven Surefire Plugin for running tests -->
+		<plugin>
+			<groupId>org.apache.maven.plugins</groupId>
+			<artifactId>maven-surefire-plugin</artifactId>
+			<version>3.0.0-M9</version>
+			<configuration>
+				<includes>
+					<include>**/*Test.java</include>
+					<include>**/*Tests.java</include>
+					<include>**/Test*.java</include>
+					<include>**/*TestCase.java</include>
+					<include>**/RunnerTestNG.java</include>
+				</includes>
+			</configuration>
+		</plugin>
+		<!-- Maven Compiler Plugin -->
+		<plugin>
+			<groupId>org.apache.maven.plugins</groupId>
+			<artifactId>maven-compiler-plugin</artifactId>
+			<version>3.11.0</version>
+			<configuration>
+				<source>11</source>
+				<target>11</target>
+			</configuration>
+		</plugin>
+	</plugins>
+</build>
 
 </project>

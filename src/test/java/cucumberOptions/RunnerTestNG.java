@@ -11,7 +11,9 @@ import io.cucumber.testng.CucumberOptions;
 		dryRun = false,
 		monochrome = true,
 		tags = "",
-		plugin = {"pretty", "html:target/cucumber-reports.html", "json:target/cucumber-reports.json", "junit:target/cucumber-reports.xml"}
+		plugin = {"pretty", "html:target/cucumber-reports.html", "json:target/cucumber-reports.json", "junit:target/cucumber-reports.xml",
+				"com.aventstack.extentreports.cucumber.adapter.ExtentCucumberAdapter:"
+				}
 		)
 
 public class RunnerTestNG extends AbstractTestNGCucumberTests {
