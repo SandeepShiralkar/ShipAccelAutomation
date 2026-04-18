@@ -23,22 +23,25 @@ public class TestBase {
 		Properties prop = new Properties();
 		prop.load(fis);
 		String url = prop.getProperty("QA_URL");
+		String browser_properties = prop.getProperty("browser");
+		String browser_maven = System.getProperty("browser");
+		String browserName = browser_maven != null ? browser_maven : browser_properties;
 		
 		if (driver == null) {
 			
-			if (prop.getProperty("browser").equalsIgnoreCase("chrome")) {
+			if (browserName.equalsIgnoreCase("chrome")) {
 				WebDriverManager.chromedriver().setup();
 				driver = new ChromeDriver();
 				driver.manage().window().maximize();
 				driver.get(url);
 			}
-			else if (prop.getProperty("browser").equalsIgnoreCase("edge")) {
+			else if (browserName.equalsIgnoreCase("edge")) {
 				WebDriverManager.edgedriver().setup();
 				driver = new EdgeDriver();
 				driver.manage().window().maximize();
 				driver.get(url);
 			}
-			else if (prop.getProperty("browser").equalsIgnoreCase("firefox")) {
+			else if (browserName.equalsIgnoreCase("firefox")) {
 				WebDriverManager.firefoxdriver().setup();
 				driver = new FirefoxDriver();
 				driver.manage().window().maximize();
